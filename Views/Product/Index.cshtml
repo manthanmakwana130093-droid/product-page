@@ -1,0 +1,65 @@
+﻿@model IEnumerable<project6.Models.products>
+
+@{
+    ViewBag.Title = "Product Catalog";
+}
+@{ 
+    Layout=null ;
+}
+
+
+<h2>Product Catalog</h2>
+
+<table border="1" cellpadding="10" cellspacing="0">
+    <thead>
+        <tr class="row">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>To see the description</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr class="data">
+                <td>@p.id</td>
+                <td>@p.name</td>
+                <td>@p.description</td>
+                <td>₹@p.price</td>
+                <td>@p.quantity</td>
+                <td>@p.category</td>
+
+                <td>
+                    <img src="@p.imageurl"
+                         alt="@p.name"
+                         style="width:100px;height:auto;" />
+                </td>
+                <td style="background-color: #6D0808; padding: 10px;">
+                    @Html.ActionLink("View Description", "Details", "Product",
+                        new { id = p.id },
+                        new { style = "background-color: #6D0808; text-decoration: none; font-weight: bold; color: #EEEAD7" }
+                    )
+                </td>
+
+            </tr> 
+        }
+    </tbody>
+</table>
+
+<style>
+  
+    .row {
+        color: #6D0808;
+        background-color: #EEEAD7
+    }
+    .data {
+        background-color: #6D0808;
+        color: #F2EFE7
+    }
+</style>
